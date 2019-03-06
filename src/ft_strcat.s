@@ -1,48 +1,39 @@
 ;******************************************************************************
-; The strcat() function append a copy of the null-terminated string s2 to the 
-; end of the null-terminated string s1, then add a terminating `\0'.
+; The ft_strcat() function append a copy of the null-terminated string s2 to 
+; the end of the null-terminated string s1, then add a terminating `\0'.
 ; prototype:
 ; char			*ft_strcat(char *restrict s1, const char *restrict s2);
 ;******************************************************************************
 
 section	.text
 	global		_ft_strcat
-
-_get_dest_len:
-	mov		rcx, 0
-	loop1:
-		cmp	byte [r8 + rcx], 0
-		je	ret_process
-		inc	rcx
-		jmp	loop1
-	ret_process:
-		ret
-
-_get_src_len:
-	mov		rcx, 0
-	loop2:
-		cmp	byte [r9 + rcx], 0
-		je	ret_process
-		inc	rcx
-		jmp	loop2
+	extern		_ft_strlen
 
 _ft_strcat:
-	push		rbp
-	mov		rbp, rsp
+	push		rbp			;
+	mov		rbp, rsp		;
 
-	mov		r8, rdi
-	mov		r9, rsi
-	call		_get_dest_len
-	cld
-	lea		rdx, [rdi + rcx]
-	call		_get_src_len
-	mov		rdi, rdx
-	rep		movsb
-	call		_get_dest_len
-	sub		rdi, rcx
-	mov		byte [rdi + rcx], 0
+	mov		r8, rdi			; storing dest
+	mov		r9, rsi			; storing src
 
-	exit_process:
-		mov	rax, rdi
-		leave
-		ret
+	call		_ft_strlen		; getting the len of dest
+	lea		r10, [r8 + rax]		; storing pointer to last char of dest in r10
+
+	mov		rdi, r9			; moving src to rdi to call strlen
+	call		_ft_strlen		; getting the len of src
+	mov		rcx, rax		; here, rax is the return of ft_strlen(src)
+	mov		rdi, r10		; moving pointer to last char of dest to rdi
+	rep		movsb			; rso to copy src after dest last char
+	
+	mov		r10, rdi		; storing the ret value in r10
+
+	mov		rdi, r8			; moving dest to rdi
+	call		_ft_strlen		; getting the len of dest
+
+	sub		r10, rax 		; set the pointer to its right position after rso
+	mov		byte[r10 + rax], 0	; set the last char of ret to 0
+	
+	mov		rax, r10		; setting the return value to rdi
+	leave					;
+	ret					;
+
