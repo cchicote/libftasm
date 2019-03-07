@@ -6,7 +6,7 @@
 #    By: cchicote <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/01 19:09:21 by cchicote          #+#    #+#              #
-#    Updated: 2019/03/06 20:50:03 by cchicote         ###   ########.fr        #
+#    Updated: 2019/03/08 00:20:07 by cchicote         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,10 +20,28 @@ ARCH = macho64
 
 SRCS = ft_bzero.s \
 	ft_strcat.s \
-	ft_strlen.s 
+	ft_strlen.s \
+	ft_isupper.s \
+	ft_islower.s \
+	ft_isalpha.s \
+	ft_isdigit.s \
+	ft_isalnum.s \
+	ft_isascii.s \
+	ft_isprint.s \
+	ft_toupper.s \
+	ft_tolower.s 
 TEST_SRCS = test_bzero.c \
 		test_strcat.c \
-		test_strlen.c		
+		test_strlen.c \
+		test_isupper.c \
+		test_islower.c \
+		test_isalpha.c \
+		test_isdigit.c \
+		test_isalnum.c \
+		test_isascii.c \
+		test_isprint.c \
+		test_toupper.c \
+		test_tolower.c
 OBJ = $(SRCS:%.s=$(OBJ_PATH)%.o)
 TEST_OBJ = $(TEST_SRCS:%.c=$(OBJ_TEST_PATH)%.o)
 

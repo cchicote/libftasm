@@ -6,7 +6,7 @@
 /*   By: cchicote <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 18:57:32 by cchicote          #+#    #+#             */
-/*   Updated: 2019/03/06 22:14:04 by cchicote         ###   ########.fr       */
+/*   Updated: 2019/03/08 00:20:38 by cchicote         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,15 @@ int				main(void)
 	total_errors += test_bzero();
 	total_errors += test_strcat();
 	total_errors += test_strlen();
+	total_errors += test_isupper();
+	total_errors += test_islower();
+	total_errors += test_isalpha();
+	total_errors += test_isdigit();
+	total_errors += test_isalnum();
+	total_errors += test_isascii();
+	total_errors += test_isprint();
+	total_errors += test_toupper();
+	total_errors += test_tolower();
 	printf("\033[01;33mTotal errors: [%d]\033[0m\n", total_errors);
 	return (0);	
 }
