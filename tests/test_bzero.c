@@ -6,7 +6,7 @@
 /*   By: cchicote <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 02:09:34 by cchicote          #+#    #+#             */
-/*   Updated: 2019/03/06 03:50:02 by cchicote         ###   ########.fr       */
+/*   Updated: 2019/03/07 14:01:51 by cchicote         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ int				test_bzero(void)
 	error_counter = 0;
 	valid_test_bzero() != 0 ? error_counter++ : 0 ;
 	crash_test_bzero() != 0 ? error_counter++ : 0 ;
+	//This one cause memory troubles even with the standard bzero
 	//crash_test_bzero_2() != 0 ? error_counter++ : 0 ;
 	if (error_counter)
 		printf("\033[01;31m%d tests failed for bzero tests\033[0m\n", error_counter);
