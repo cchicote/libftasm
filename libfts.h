@@ -6,7 +6,7 @@
 /*   By: cchicote <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 18:54:53 by cchicote          #+#    #+#             */
-/*   Updated: 2019/03/08 00:20:30 by cchicote         ###   ########.fr       */
+/*   Updated: 2019/03/11 17:48:32 by cchicote         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <string.h>
 # include <stdlib.h>
 # include <ctype.h>
+# include <unistd.h>
+# include <fcntl.h>
 
 
 void				ft_bzero(void *s, size_t n);
@@ -32,6 +34,7 @@ int				ft_isascii(int c);
 int				ft_isprint(int c);
 int				ft_toupper(int c);
 int				ft_tolower(int c);
+int				ft_puts(const char *s);
 
 /*
 **				TEST_BZERO.C
@@ -95,6 +98,11 @@ int				test_toupper(void);
 **				TEST_TOLOWER.C
 */
 int				test_tolower(void);
+
+/*
+**				TEST_PUTS.C
+*/
+int				test_puts(void);
 
 #endif
 

@@ -20,5 +20,6 @@ _ft_strlen:
 	mov		rax, -2
 	sub		rax, rcx
 
-	leave
-	ret
+	exit_process:
+		leave
+		ret

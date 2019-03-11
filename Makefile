@@ -6,7 +6,7 @@
 #    By: cchicote <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/01 19:09:21 by cchicote          #+#    #+#              #
-#    Updated: 2019/03/08 00:20:07 by cchicote         ###   ########.fr        #
+#    Updated: 2019/03/11 19:05:30 by cchicote         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ SRCS = ft_bzero.s \
 	ft_isascii.s \
 	ft_isprint.s \
 	ft_toupper.s \
-	ft_tolower.s 
+	ft_tolower.s \
+	ft_puts.s 
 TEST_SRCS = test_bzero.c \
 		test_strcat.c \
 		test_strlen.c \
@@ -41,7 +42,8 @@ TEST_SRCS = test_bzero.c \
 		test_isascii.c \
 		test_isprint.c \
 		test_toupper.c \
-		test_tolower.c
+		test_tolower.c \
+		test_puts.c
 OBJ = $(SRCS:%.s=$(OBJ_PATH)%.o)
 TEST_OBJ = $(TEST_SRCS:%.c=$(OBJ_TEST_PATH)%.o)
 
@@ -55,11 +57,11 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.s
 	mkdir -p $(OBJ_PATH)
 	nasm -f $(ARCH) $< -o $@
 
-clean:
+clean: clean_test
 	@ echo "Cleaning .o files"
 	@ /bin/rm -Rf $(OBJ_PATH)
 
-fclean: clean
+fclean: clean fclean_test
 	@ echo "Cleaning $(NAME)"
 	@ /bin/rm -f $(NAME)
 
