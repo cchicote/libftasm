@@ -21,12 +21,13 @@ _ft_strcat:
 
 	mov		rdi, r9			; moving src to rdi to call strlen
 	call		_ft_strlen		; getting the len of src
-	inc		rax			; to copy the \0
+	inc		rax			; add 1 to the len to copy the \0
+
 	mov		rcx, rax		; here, rax is the return of ft_strlen(src)
 	mov		rdi, r10		; moving pointer to last char of dest to rdi
 	rep		movsb			; rso to copy src after dest last char
 	
-	mov		rax, r8			; setting the return value to rdi
+	mov		rax, r8			; setting the return value to r8
 	leave					;
 	ret					;
 
