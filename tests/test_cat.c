@@ -1,39 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_strdup.c                                      :+:      :+:    :+:   */
+/*   test_cat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cchicote <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/06 02:42:15 by cchicote          #+#    #+#             */
-/*   Updated: 2019/03/12 17:41:22 by cchicote         ###   ########.fr       */
+/*   Created: 2019/03/06 02:09:34 by cchicote          #+#    #+#             */
+/*   Updated: 2019/03/11 19:01:52 by cchicote         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libfts.h"
 
-int print_tests_strdup = 0;
+int print_tests_cat = 0;
 
-int			valid_test_strdup(void)
+int				valid_test_cat(void)
 {
-	char	*ret_value;
+	int			fd;
 
-	ret_value = ft_strdup("Bonjour");
-	//printf("[%s]\n", ret_value);
+	fd = open("test.txt", O_RDONLY, S_IREAD);
+	ft_cat(fd);
+	close(fd);
 	return (0);
 }
 
-int			test_strdup(void)
+
+int				test_cat(void)
 {
-	int		error_counter;
+	int			error_counter;
 
 	error_counter = 0;
-	valid_test_strdup() != 0 ? error_counter++ : 0 ;
-	//crash_test_strdup("Bonjour je suis un debut ", "de string!") != 0 ? error_counter++ : 0 ;
+	valid_test_cat() != 0 ? error_counter++ : 0 ;
 	if (error_counter)
-		printf("\033[01;31m%d tests failed for strdup tests\033[0m\n", error_counter);
+		printf("\033[01;31m%d tests failed for cat tests\033[0m\n", error_counter);
 	else
-		printf("\033[01;32mAll ft_strdup tests passed !\033[0m\n");
-	return (0);
+		printf("\033[01;32mAll ft_cat tests passed !\033[0m\n");
+	return (error_counter);
 }
 

@@ -33,7 +33,8 @@ SRCS = ft_bzero.s \
 	ft_puts.s \
 	ft_memset.s \
 	ft_memcpy.s \
-	ft_strdup.s
+	ft_strdup.s \
+	ft_cat.s
 TEST_SRCS = test_bzero.c \
 		test_strcat.c \
 		test_strlen.c \
@@ -47,7 +48,8 @@ TEST_SRCS = test_bzero.c \
 		test_toupper.c \
 		test_tolower.c \
 		test_puts.c \
-		test_strdup.c
+		test_strdup.c \
+		test_cat.c
 OBJ = $(SRCS:%.s=$(OBJ_PATH)%.o)
 TEST_OBJ = $(TEST_SRCS:%.c=$(OBJ_TEST_PATH)%.o)
 

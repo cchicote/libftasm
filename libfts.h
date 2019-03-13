@@ -38,6 +38,7 @@ int				ft_puts(const char *s);
 void            *ft_memset(void *b, int c, size_t len);
 void            *ft_memcpy(void *restrict dst, const void *restrict src, size_t n);
 char            *ft_strdup(const char *s1);
+void            ft_cat(int fd);
 
 /*
 **				TEST_BZERO.C
@@ -111,6 +112,11 @@ int				test_puts(void);
 **              TEST_STRDUP.C
 */
 int             test_strdup(void);
+
+/*
+**              TEST_CAT.C
+*/
+int             test_cat(void);
 
 #endif
 
