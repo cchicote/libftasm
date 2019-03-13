@@ -35,6 +35,9 @@ int				ft_isprint(int c);
 int				ft_toupper(int c);
 int				ft_tolower(int c);
 int				ft_puts(const char *s);
+void            *ft_memset(void *b, int c, size_t len);
+void            *ft_memcpy(void *restrict dst, const void *restrict src, size_t n);
+char            *ft_strdup(const char *s1);
 
 /*
 **				TEST_BZERO.C
@@ -103,6 +106,11 @@ int				test_tolower(void);
 **				TEST_PUTS.C
 */
 int				test_puts(void);
+
+/*
+**              TEST_STRDUP.C
+*/
+int             test_strdup(void);
 
 #endif
 

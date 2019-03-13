@@ -6,13 +6,13 @@
 /*   By: cchicote <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 02:42:15 by cchicote          #+#    #+#             */
-/*   Updated: 2019/03/11 19:34:06 by cchicote         ###   ########.fr       */
+/*   Updated: 2019/03/12 17:41:22 by cchicote         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libfts.h"
 
-int print_tests_strcat = 1;
+int print_tests_strcat = 0;
 
 char			*init_s1(void)
 {
