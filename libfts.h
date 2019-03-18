@@ -118,5 +118,15 @@ int             test_strdup(void);
 */
 int             test_cat(void);
 
+/*
+**              TEST_MEMSET.C
+*/
+int             test_memset(void);
+
+/*
+**              TEST_MEMCPY.C
+*/
+int             test_memcpy(void);
+
 #endif
 

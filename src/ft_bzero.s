@@ -9,7 +9,7 @@ section	.text
 	global		_ft_bzero
 
 _ft_bzero:
-	push		rbp			; stack init
+	push		rbp			; stack frame init
 	mov		rbp, rsp		;
 
 	cmp		rsi, 0			; if n is zero

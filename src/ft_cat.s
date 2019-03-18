@@ -18,50 +18,50 @@ format: db "[%s]", 10
 
 section	.text
 	global _ft_cat
-	extern _printf
 	extern _malloc
 	extern _ft_bzero
 
 _ft_cat:
-	push		rbp						; stack frame init
-	mov			rbp, rsp				;
+	push		rbp								; stack frame init
+	mov			rbp, rsp						;
 	sub			rsp, 16
 
-	cmp			rdi, 0					; if fd < 0 
-	jl			exit_process			; return
+	cmp			rdi, 0							; if fd < 0 
+	jl			exit_process					; return
 
-	mov			[rbp - 16], rdi
-	mov			rdi, BUFF_SIZE + 1
-	call		_malloc
+	mov			[rbp - 16], rdi					; saving fd in stack frame
+	mov			rdi, BUFF_SIZE + 1				; loading args for malloc
+	call		_malloc							;
 
-	test		rax, rax
-	js			exit_process
+	test		rax, rax						; check malloc return
+	js			exit_process					; exit if malloc returns NULL
 	
-	mov			[rbp - 8], rax
-	read_line:
-		mov			rdi, [rbp - 8]
-		mov			rsi, BUFF_SIZE + 1
-		call		_ft_bzero
-
-		mov			rdi, [rbp - 16]
-		mov			rsi, [rbp - 8]
-		mov			rdx, BUFF_SIZE
-		mov			rax, MACH_SYSCALL(READ)
-		syscall
-
-		jc			exit_process
-
-		cmp			rax, 0
-		je			exit_process
-
-		mov			rdi, 1
-		mov			rsi, [rbp - 8]
-		mov			rdx, BUFF_SIZE
-		mov			rax, MACH_SYSCALL(WRITE)
-		syscall
-		jmp			read_line
+	mov			[rbp - 8], rax					; saving malloc return in stack frame
 	
-	exit_process:						; exit marker
-		leave							; leave stack frame
-		ret								; return
+	read_line:									; read_line marker
+		mov			rdi, [rbp - 8]				; loading args for ft_bzero (s)
+		mov			rsi, BUFF_SIZE + 1			; (size)
+		call		_ft_bzero					;
+
+		mov			rdi, [rbp - 16]				; loading args for syscall read (fd)
+		mov			rsi, [rbp - 8]				; (buffer)
+		mov			rdx, BUFF_SIZE				; (nbytes)
+		mov			rax, MACH_SYSCALL(READ) 	; (syscall)
+		syscall									;
+
+		jc			exit_process				; if carry flag is set, then return
+
+		cmp			rax, 0						; if read returns 0 then return 
+		je			exit_process				; 
+
+		mov			rdi, 1						; loading arguments for syscall write (fd)
+		mov			rsi, [rbp - 8]				; (buffer)
+		mov			rdx, BUFF_SIZE				; (nbytes)
+		mov			rax, MACH_SYSCALL(WRITE)	; (syscall)
+		syscall
+		jmp			read_line					; jump to the read_line marker
+	
+	exit_process:								; exit marker
+		leave									; leave stack frame
+		ret										; return
 

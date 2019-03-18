@@ -16,23 +16,23 @@ section	.text
 _ft_strdup:
 	push		rbp						; stack frame init
 	mov			rbp, rsp				;
-	sub			rsp, 16
+	sub			rsp, 16					; reserve 16 bytes of memory on the stack
 
-	mov			[rbp - 8], rdi			; save s1 address
+	mov			[rbp - 8], rdi			; save s1 address in stack frame
 
-	call		_ft_strlen
-	inc			rax
-	mov			rdi, rax
-	mov 		[rbp - 16], rax			; save len
+	call		_ft_strlen				; call strlen on s1 
+	inc			rax						; inc the result of strlen to count the \0
+	mov 		[rbp - 16], rax			; save len in stack frame
 
-	call		_malloc
-	test		rax, rax
-	js			exit_process
+	mov			rdi, rax				; load the len into rdi
+	call		_malloc					;
+	test		rax, rax				; check the return of malloc
+	js			exit_process			; if malloc returns NULL, then we jump to exit_process marker
 
 	mov			rsi, [rbp - 8]			; load s1
 	mov			rdx, [rbp - 16]			; load len
 	mov			rdi, rax				; malloc-ed area
-	call		_ft_memcpy
+	call		_ft_memcpy				; copy the content of s1 into the malloc-ed area
 
 	exit_process:						; exit marker
 		leave							; leave stack frame

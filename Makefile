@@ -49,7 +49,9 @@ TEST_SRCS = test_bzero.c \
 		test_tolower.c \
 		test_puts.c \
 		test_strdup.c \
-		test_cat.c
+		test_cat.c \
+		test_memset.c \
+		test_memcpy.c
 OBJ = $(SRCS:%.s=$(OBJ_PATH)%.o)
 TEST_OBJ = $(TEST_SRCS:%.c=$(OBJ_TEST_PATH)%.o)
 

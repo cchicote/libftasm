@@ -24,6 +24,17 @@ int				valid_test_cat(void)
 	return (0);
 }
 
+int				crash_test_cat(void)
+{
+	ft_cat(42);
+	return (0);
+}
+
+int				crash_test_cat_2(void)
+{
+	ft_cat(1);
+	return (0);
+}
 
 int				test_cat(void)
 {
@@ -31,6 +42,8 @@ int				test_cat(void)
 
 	error_counter = 0;
 	valid_test_cat() != 0 ? error_counter++ : 0 ;
+	crash_test_cat() != 0 ? error_counter++ : 0 ;
+	//crash_test_cat_2() != 0 ? error_counter++ : 0 ;
 	if (error_counter)
 		printf("\033[01;31m%d tests failed for cat tests\033[0m\n", error_counter);
 	else

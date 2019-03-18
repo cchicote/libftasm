@@ -30,8 +30,10 @@ int				main(void)
 	total_errors += test_toupper();
 	total_errors += test_tolower();
 	total_errors += test_strdup();
+	total_errors += test_memset();
+	total_errors += test_memcpy();
 	total_errors += test_cat();
-	//total_errors += test_puts();
+	total_errors += test_puts();
 	printf("\033[01;33mTotal errors: [%d]\033[0m\n", total_errors);
 	return (0);	
 }
