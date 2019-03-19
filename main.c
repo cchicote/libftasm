@@ -34,6 +34,8 @@ int				main(void)
 	total_errors += test_memcpy();
 	total_errors += test_cat();
 	total_errors += test_puts();
+	total_errors += test_memalloc();
+	total_errors += test_memdel();
 	printf("\033[01;33mTotal errors: [%d]\033[0m\n", total_errors);
 	return (0);	
 }

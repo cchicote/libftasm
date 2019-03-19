@@ -39,6 +39,8 @@ void            *ft_memset(void *b, int c, size_t len);
 void            *ft_memcpy(void *restrict dst, const void *restrict src, size_t n);
 char            *ft_strdup(const char *s1);
 void            ft_cat(int fd);
+void            *ft_memalloc(size_t size);
+void			ft_memdel(void **ap);
 
 /*
 **				TEST_BZERO.C
@@ -127,6 +129,16 @@ int             test_memset(void);
 **              TEST_MEMCPY.C
 */
 int             test_memcpy(void);
+
+/*
+**              TEST_MEMALLOC.C
+*/
+int             test_memalloc(void);
+
+/*
+**				TEST_MEMDEL.C
+*/
+int				test_memdel(void);
 
 #endif
 
