@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_memdel.c                                      :+:      :+:    :+:   */
+/*   test_strclr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cchicote <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,33 +12,33 @@
 
 #include "../libfts.h"
 
-int print_tests_memdel = 0;
+int print_tests_strclr = 0;
 
-int				valid_test_memdel(void)
+int				valid_test_strclr(void)
 {
-	void		*z1;
+	char		*z1;
 	
-	z1 = malloc(10);
-	if (print_tests_memdel)
+	z1 = strdup("Bonjour");
+	if (print_tests_strclr)
 		ft_puts(z1);
-	ft_memdel(&z1);
-	if (print_tests_memdel)
+	ft_strclr(z1);
+	if (print_tests_strclr)
 		ft_puts(z1);
 	free(z1);
-	if (print_tests_memdel)
+	if (print_tests_strclr)
 		ft_puts(z1);
 	return (0);
 }
 
-int				test_memdel(void)
+int				test_strclr(void)
 {
 	int			error_counter;
 
 	error_counter = 0;
-	valid_test_memdel() != 0 ? error_counter++ : 0 ;
+	valid_test_strclr() != 0 ? error_counter++ : 0 ;
 	if (error_counter)
-		printf("\033[01;31m%d tests failed for memdel tests\033[0m\n", error_counter);
+		printf("\033[01;31m%d tests failed for strclr tests\033[0m\n", error_counter);
 	else
-		printf("\033[01;32mAll ft_memdel tests passed !\033[0m\n");
+		printf("\033[01;32mAll ft_strclr tests passed !\033[0m\n");
 	return (error_counter);
 }

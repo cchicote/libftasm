@@ -36,7 +36,11 @@ SRCS = ft_bzero.s \
 	ft_strdup.s \
 	ft_cat.s \
 	ft_memalloc.s \
-	ft_memdel.s
+	ft_memdel.s \
+	ft_strnew.s \
+	ft_strdel.s \
+	ft_strclr.s \
+	ft_cat_bis.s 
 TEST_SRCS = test_bzero.c \
 		test_strcat.c \
 		test_strlen.c \
@@ -55,7 +59,11 @@ TEST_SRCS = test_bzero.c \
 		test_memset.c \
 		test_memcpy.c \
 		test_memalloc.c \
-		test_memdel.c
+		test_memdel.c \
+		test_strnew.c \
+		test_strdel.c \
+		test_strclr.c \
+		test_cat_bis.c
 OBJ = $(SRCS:%.s=$(OBJ_PATH)%.o)
 TEST_OBJ = $(TEST_SRCS:%.c=$(OBJ_TEST_PATH)%.o)
 

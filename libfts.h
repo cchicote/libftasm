@@ -41,7 +41,10 @@ char            *ft_strdup(const char *s1);
 void            ft_cat(int fd);
 void            *ft_memalloc(size_t size);
 void			ft_memdel(void **ap);
-
+char			*ft_strnew(size_t size);
+void			ft_strdel(char **as);
+char			*ft_strclr(char *s);
+void 			ft_cat_bis(int fd);
 /*
 **				TEST_BZERO.C
 */
@@ -139,6 +142,26 @@ int             test_memalloc(void);
 **				TEST_MEMDEL.C
 */
 int				test_memdel(void);
+
+/*
+**				TEST_STRNEW.C
+*/
+int				test_strnew(void);
+
+/*
+**				TEST_STRDEL.C
+*/
+int				test_strdel(void);
+
+/*
+**				TEST_STRCLR.C
+*/
+int				test_strclr(void);
+
+/*
+**              TEST_FT_CAT_BIS.C
+*/
+int				test_cat_bis(void);
 
 #endif
 

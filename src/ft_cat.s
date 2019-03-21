@@ -19,6 +19,7 @@ format: db "[%s]", 10
 section	.text
 	global _ft_cat
 	extern _malloc
+	extern _free
 	extern _ft_bzero
 
 _ft_cat:
@@ -49,10 +50,10 @@ _ft_cat:
 		mov			rax, MACH_SYSCALL(READ) 	; (syscall)
 		syscall									;
 
-		jc			exit_process				; if carry flag is set, then return
+		jc			free_marker					; if carry flag is set, then return
 
 		cmp			rax, 0						; if read returns 0 then return 
-		je			exit_process				; 
+		je			free_marker					; 
 
 		mov			rdi, 1						; loading arguments for syscall write (fd)
 		mov			rsi, [rbp - 8]				; (buffer)
@@ -61,6 +62,10 @@ _ft_cat:
 		syscall
 		jmp			read_line					; jump to the read_line marker
 	
+	free_marker:
+		mov			rdi, [rbp - 8]
+		call		_free
+
 	exit_process:								; exit marker
 		leave									; leave stack frame
 		ret										; return
