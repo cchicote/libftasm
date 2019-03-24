@@ -90,7 +90,7 @@ $(OBJ_TEST_PATH)%.o: $(TEST_PATH)%.c
 	@ gcc -Wall -Werror -Wextra -o $@ -c $<
 
 compil_test: $(NAME) $(TEST_OBJ)
-	@ gcc -Wall -Werror -Wextra main.c -o $(TEST_NAME) $(TEST_OBJ) -L. -lfts
+	@ gcc -Wall -Werror -Wextra main.c -o $(TEST_NAME) $(TEST_OBJ) -L. -lfts 
 
 test: compil_test
 	@ ./$(TEST_NAME)

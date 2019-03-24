@@ -11,55 +11,76 @@
 %define STDOUT							1
 %define READ							3
 %define WRITE							4
+%define MAX_SIZE						1000000	
+%define BUFF_SIZE						63
 
 section	.text
 	global _ft_cat_bis
-	extern _malloc
 	extern _fstat
-	extern _free
+	extern _ft_bzero
 
 _ft_cat_bis:
-	push		rbp								; stack frame init
-	mov			rbp, rsp						;
-	sub			rsp, 160						; struct stat is 144 bytes long, we need 8 bytes for buffer and 8 bytes for fd
+	push		rbp									; stack frame init
+	mov			rbp, rsp							;
+	sub			rsp, 224							; struct stat is 144 bytes long, we need 64 bytes for buffer and 8 bytes for fd amnd 8 for alignment
 
-	cmp			rdi, 0							; if fd < 0 
-	jl			exit_process					; return
+	cmp			rdi, 0								; if fd < 0 
+	jl			exit_process						; return
 
-	mov			[rbp - 152], rdi				; saving fd into stack frame
+	mov			[rsp + 208], rdi					; saving fd into stack frame
 
-	lea			rsi, [rbp - 144]				; loading the address of the zone reserved for the stat structure
-	call		_fstat							; 
+	cmp			rdi, 1
+	je			THEN
 
-	mov			rdi, [rbp - 72]					; loading args for malloc (rbp - 72 leads to st_size of the stat struct)
-	call		_malloc							; 
+	lea			rsi, [rsp]							; loading the address of the zone reserved for the stat structure
+	call		_fstat								;
 
-	test		rax, rax						; check malloc return
-	js			exit_process					; exit if malloc returns NULL
-	
-	mov			[rbp - 160], rax				; saving malloc return in stack frame
+	IF:
+		mov			rdi, [rsp + 208]				; loading args for syscall read (fd)
+		mov 		rdx, [rsp + 72]
+		cmp			rdx, MAX_SIZE
+		jle			ELSE
 
-	mov			rdi, [rbp - 152]				; loading args for syscall read (fd)
-	mov			rsi, [rbp - 160]				; (buffer)
-	mov			rdx, [rbp - 72]					; (nbytes)
-	mov			rax, MACH_SYSCALL(READ) 		; (syscall)
-	syscall										;
+	THEN:											;
+		lea			rdi, [rsp + 144]				; loading args for ft_bzero (s)
+		mov			rsi, BUFF_SIZE + 1				; (size)
+		call		_ft_bzero						;
 
-	jc			free_marker						; if carry flag is set then something went wrong with the reading
-	cmp			rax, 0							; if read returns 0 then free and return 
-	je			free_marker						; 
+		mov			rdi, [rsp + 208]				; loading args for syscall read (fd)
+		lea			rsi, [rsp + 144]				; (buffer)
+		mov			rdx, BUFF_SIZE					; (nbytes)
+		mov			rax, MACH_SYSCALL(READ) 		; (syscall)
+		syscall										;
 
-	mov			rdi, 1							; loading arguments for syscall write (fd)
-	mov			rsi, [rbp - 160]				; (buffer)
-	mov			rdx, [rbp - 72]					; (nbytes)
-	mov			rax, MACH_SYSCALL(WRITE)		; (syscall)
-	syscall										;
+		jc			exit_process					; if carry flag is set, then return
 
-	free_marker:
-		mov			rdi, [rbp - 160]			; load the buffer to rdi
-		call		_free						;
+		cmp			rax, 0							; if read returns 0 then return 
+		je			exit_process					; 
+
+		mov			rdi, 1							; loading arguments for syscall write (fd)
+		lea			rsi, [rsp + 144]				; (buffer)
+		mov			rdx, BUFF_SIZE					; (nbytes)
+		mov			rax, MACH_SYSCALL(WRITE)		; (syscall)
+		syscall
+		jmp			THEN							; jump to the THEN marker
+
+	ELSE:
+		mov			rsi, [rsp + 144]				; (buffer)
+		mov			rdx, [rsp + 72]					; (nbytes)
+		mov			rax, MACH_SYSCALL(READ) 		; (syscall)
+		syscall										;
+
+		jc			exit_process					; if carry flag is set then something went wrong with the reading
+		cmp			rax, 0							; if read returns 0 then free and return 
+		je			exit_process					; 
+
+		mov			rdi, 1							; loading arguments for syscall write (fd)
+		mov			rsi, [rsp + 144]				; (buffer)
+		mov			rdx, [rsp + 72]					; (nbytes)
+		mov			rax, MACH_SYSCALL(WRITE)		; (syscall)
+		syscall										;
 
 	exit_process:
-		leave									; leave stack frame
-		ret										; return
+		leave										; leave stack frame
+		ret											; return
 
