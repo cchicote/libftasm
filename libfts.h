@@ -45,6 +45,8 @@ char			*ft_strnew(size_t size);
 void			ft_strdel(char **as);
 char			*ft_strclr(char *s);
 void 			ft_cat_bis(int fd);
+void			ft_striter(char *s, void (*f)(char *));
+
 /*
 **				TEST_BZERO.C
 */
@@ -162,6 +164,12 @@ int				test_strclr(void);
 **              TEST_FT_CAT_BIS.C
 */
 int				test_cat_bis(void);
+
+/*
+**				TEST_STRITER.C
+*/
+int				test_striter(void);
+
 
 #endif
 

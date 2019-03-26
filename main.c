@@ -42,6 +42,7 @@ int				main(void)
 	total_errors += test_strdel();
 	total_errors += test_strclr();
 	total_errors += test_cat_bis();
+	total_errors += test_striter();
 	printf("\033[01;33m\nTotal errors: [%d]\033[0m\n", total_errors);
 	
 	return (0);	

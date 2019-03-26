@@ -29,17 +29,17 @@ _ft_cat_bis:
 
 	mov			[rsp + 208], rdi					; saving fd into stack frame
 
-	cmp			rdi, 1
-	je			THEN
+	cmp			rdi, 1								; if fd is 1
+	je			THEN								; jump to the classic ft_cat
 
 	lea			rsi, [rsp]							; loading the address of the zone reserved for the stat structure
 	call		_fstat								;
 
 	IF:
 		mov			rdi, [rsp + 208]				; loading args for syscall read (fd)
-		mov 		rdx, [rsp + 72]
-		cmp			rdx, MAX_SIZE
-		jle			ELSE
+		mov 		rdx, [rsp + 72]					; loading file size in comparison register
+		cmp			rdx, MAX_SIZE					; comparing
+		jle			ELSE							; 
 
 	THEN:											;
 		lea			rdi, [rsp + 144]				; loading args for ft_bzero (s)
