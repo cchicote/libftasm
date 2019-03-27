@@ -32,7 +32,7 @@ _ft_puts:
 	
 	THEN:									; THEN marker (the string is NULL)
 		lea		r9, [rel str_null.value]	; load effective address for the (null) message
-		lea		r8, [rel str_null.len]		; same for the length of the message
+		lea		r8, [str_null.len]			; same for the length of the message
 		jmp		ENDIF						; jump to the ENDIF marker
 
 	ELSE:									; ELSE marker

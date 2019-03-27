@@ -19,7 +19,7 @@ int					valid_test_cat_bis(void)
 {
 	int			fd;
 
-	fd = open("test.txt", O_RDONLY, S_IREAD);
+	fd = open("files_test/test.txt", O_RDONLY, S_IREAD);
 	ft_cat_bis(fd);
 	close(fd);
 	return (0);

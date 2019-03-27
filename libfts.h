@@ -45,7 +45,6 @@ char			*ft_strnew(size_t size);
 void			ft_strdel(char **as);
 char			*ft_strclr(char *s);
 void 			ft_cat_bis(int fd);
-void			ft_striter(char *s, void (*f)(char *));
 
 /*
 **				TEST_BZERO.C
@@ -59,117 +58,148 @@ int				crash_test_bzero_2(void);
 **				TEST_STRCAT.C
 */
 int				test_strcat(void);
+int				valid_test_strcat(void);
+int				crash_test_strcat(char *s1, char *s2);
+char			*init_s0(void);
+char			*init_s1(void);
 
 /*
 **				TEST_STRLEN.C
 */
 int				test_strlen(void);
+int				valid_test_strlen(void);
+int				crash_test_strlen(void);
+int				crash_test_strlen_2(void);
 
 /*
 **				TEST_ISUPPER.C
 */
 int				test_isupper(void);
+int				valid_test_isupper(void);
 
 /*
 **				TEST_ISLOWER.C
 */
 int				test_islower(void);
+int				valid_test_islower(void);
 
 /*
 **				TEST_ISALPHA.C
 */
 int				test_isalpha(void);
+int				valid_test_isalpha(void);
 
 /*
 **				TEST_ISDIGIT.C
 */
 int				test_isdigit(void);
+int				valid_test_isdigit(void);
 
 /*
 **				TEST_ISALNUM.C
 */
 int				test_isalnum(void);
+int				valid_test_isalnum(void);
 
 /*
 **				TEST_ISASCII.C
 */
 int				test_isascii(void);
+int				valid_test_isascii(void);
 
 /*
 **				TEST_ISPRINT.C
 */
 int				test_isprint(void);
+int				valid_test_isprint(void);
 
 /*
 **				TEST_TOUPPER.C
 */
 int				test_toupper(void);
+int				valid_test_toupper(void);
 
 /*
 **				TEST_TOLOWER.C
 */
 int				test_tolower(void);
+int				valid_test_tolower(void);
 
 /*
 **				TEST_PUTS.C
 */
 int				test_puts(void);
+int				valid_test_puts(void);
+int				crash_test_puts(void);
+int				crash_test_puts_2(void);
 
 /*
 **              TEST_STRDUP.C
 */
 int             test_strdup(void);
+int				valid_test_strdup(void);
+int				crash_test_strdup(void);
 
 /*
 **              TEST_CAT.C
 */
 int             test_cat(void);
+int				valid_test_cat(void);
+int				crash_test_cat(void);
+int				crash_test_cat_2(void);
 
 /*
 **              TEST_MEMSET.C
 */
 int             test_memset(void);
+int				valid_test_memset(void);
+int				crash_test_memset(void);
 
 /*
 **              TEST_MEMCPY.C
 */
 int             test_memcpy(void);
+int				valid_test_memcpy(void);
+int				crash_test_memcpy(void);
 
 /*
 **              TEST_MEMALLOC.C
 */
 int             test_memalloc(void);
+int				valid_test_memalloc(void);
+int				crash_test_memalloc(void);
 
 /*
 **				TEST_MEMDEL.C
 */
 int				test_memdel(void);
+int				valid_test_memdel(void);
 
 /*
 **				TEST_STRNEW.C
 */
 int				test_strnew(void);
+int				valid_test_strnew(void);
+int				crash_test_strnew(void);
 
 /*
 **				TEST_STRDEL.C
 */
 int				test_strdel(void);
+int				valid_test_strdel(void);
 
 /*
 **				TEST_STRCLR.C
 */
 int				test_strclr(void);
+int				valid_test_strclr(void);
 
 /*
 **              TEST_FT_CAT_BIS.C
 */
 int				test_cat_bis(void);
-
-/*
-**				TEST_STRITER.C
-*/
-int				test_striter(void);
-
+int				valid_test_cat_bis(void);
+int				crash_test_cat_bis(void);
+int				crash_test_cat_bis_2(void);
 
 #endif
-
